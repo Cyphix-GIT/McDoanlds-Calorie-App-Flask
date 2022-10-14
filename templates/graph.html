@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{category}} Calories</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='stylesheet.css')}}"
+    />
+    <link
+      rel="icon"
+      type="favicon"
+      href="{{ url_for('static', filename='favicon.png')}}"
+    />
+      
+  </head>
+
+  <body>
+    <h1>{{category}} Calories</h1>    
+    <a href="/">Click here to go back</a>
+    <div class="chart-container">
+    <canvas id="chart" width="50" height="50"></canvas>
+
+    <script>
+
+      let xValues = {{food_item | tojson}};
+      let yValues = {{calories | tojson}};
+      
+      new Chart("chart", {
+        type: "bar",  
+        data: {
+          labels: xValues,
+          datasets: [{
+            data: yValues,
+            backgroundColor: 'rgba(52, 183, 235, 0.2)',
+                            borderColor: 'rgba(52, 183, 235, 1)',
+                            borderWidth: 1
+          }]
+        },
+        options: {
+          legend: {display: false},
+        }
+      });
+      </script>
+    </div>
+
+    <footer>by Charlie Bramble :)</footer>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Calorie App</title>
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='stylesheet.css')}}">
+    <link rel="icon" type="favicon" href="{{ url_for('static', filename='favicon.png')}}">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css" />
+</head>
+
+<script>
+    function onSelect() {
+        let selected = document.getElementById("choice");
+        let category = selected.options[selected.selectedIndex].value;
+        window.location.replace(`/${category}`)
+    }
+</script>
+    
+<body>
+    <div class="hero">
+    <h1>McDonald's Calorie App</h1>
+    
+    <form action="/" method="post">
+
+    <label for="choice">Select one of the folowing:</label>
+    <select name="category" method="GET" action="/" id="choice" placeholder = "Select Here" >
+        <option value="" disabled selected>--Please choose an option--</option>
+        {% for item in categories %}
+            <option value="{{item}}" SELECTED>{{item}}</option>"
+        {% endfor %}
+    </select> 
+    </div>
+    <button type="button" class="button" onclick="onSelect()">Show me the calories</button>
+    </form>
+    <footer>
+        by Charlie Bramble :)
+    </footer>
+</body>
+</html>
